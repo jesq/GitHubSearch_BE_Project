@@ -41,11 +41,12 @@ namespace GitHubSearchWebApp.Controllers
 
             return Enumerable.Range(1, 10).Select(index =>
            {
+               var repository = json["items"][index - 1];
                return new GitRepository
                {
                    Id = index,
-                   Name = json["items"][index - 1].Value<string>("full_name"),
-                   HtmlUrl = json["items"][index - 1].Value<string>("html_url")
+                   Name = repository.Value<string>("full_name"),
+                   HtmlUrl = repository.Value<string>("html_url")
                };
            });
         }
