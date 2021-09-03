@@ -193,6 +193,22 @@ p {
 
 /* MEDIA QUERY */
 
+@media only screen and (max-width: 1400px) {
+ .back{
+   width: 250px !important;
+   height: 150px !important;
+ }
+ .front{
+  width: 250px !important;
+  height: 150px !important;
+}
+.flip-container{
+  width: 250px !important;
+  height: 150px !important;
+}
+}
+
+
 @media only screen and (max-width: 630px) {
   .search-section {
     width: auto;
