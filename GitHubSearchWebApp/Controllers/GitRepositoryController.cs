@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GitHubSearchWebApp.Models;
+using Microsoft.AspNetCore.Mvc;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,28 @@ namespace GitHubSearchWebApp.Controllers
 
         // GET api/<GitRepositoryController>/5
         [HttpGet("{name}")]
-        public string Get(string name)
+        public IEnumerable<GitRepository> Get(string name)
         {
-            return "value";
+            var client = new RestClient("https://api.github.com/search/repositories");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET).AddQueryParameter("q", name).AddParameter("per_page", "10").AddParameter("page","1");
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return ConvertResponseToGitRepositories();
+        }
+
+        private IEnumerable<GitRepository> ConvertResponseToGitRepositories()
+        {
+            return Enumerable.Range(1, 10).Select(index =>
+           {
+               return new GitRepository
+               {
+                   Id = index,
+                   Name = "books",
+                   HtmlUrl = "https://github.com/EbookFoundation/free-programming-books"
+               };
+           });
         }
     }
 }
