@@ -13,12 +13,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" href="assets/images/google_icon.png" />
-    <title>GitHub</title>
+    <title>Google</title>
 </head>
 
 <body>
     <header>
-        <div class="site-header d-flex justify-content-end align-items-center container-header p-2">
+        <div class="
+          site-header
+          d-flex
+          justify-content-end
+          align-items-center
+          container-header
+          p-2
+        ">
             <a href="#" class="header-links">Gmail</a>
             <a href="#" class="header-links pr-4">Images</a>
             <a href="#" class="pr-3"><img src="images/dots.svg" id="dots-img" alt="Google" /></a>
@@ -31,12 +38,23 @@
             <img src="images/googlelogo.png" id="account-img" alt="Account" />
         </div>
         <div class="search">
-            <div class=" search-section d-flex justify-content-center align-items-center">
+            <div class="
+            search-section
+            d-flex
+            justify-content-center
+            align-items-center
+          ">
                 <img src="images/google-search.jpg" class="ml-3" id="search-logo" alt="Account" />
-                <input type="text" class="m-0 pl-3" id="search_bar"/>
+                <input type="text" class="m-0 pl-3" />
                 <img src="images/voice.png" class="mr-3" id="account-img" alt="Account" data-toggle="tooltip" data-placement="bottom" title="Search by voice" />
             </div>
-            <div class=" mt-4 buttons-under-search d-flex justify-content-center align-items-center">
+            <div class="
+            mt-4
+            buttons-under-search
+            d-flex
+            justify-content-center
+            align-items-center
+          ">
                 <a href="#">Google Search</a>
                 <a href="#">I'm Feeling Lucky</a>
             </div>
@@ -49,6 +67,11 @@
         </div>
     </div>
 
+    <div class="data-insert d-flex justify-content-center align-items-center">
+        <textarea id="weatherForecast">
+                    
+        </textarea>
+    </div>
 
 
     <footer class="site-footer">
@@ -83,18 +106,10 @@
             </div>
         </div>
     </footer>
+    <script src="./lib/jquery/dist/jquery.min.js">
+    </script>
+    <script src="./js/site.js">
+    </script>
 </body>
 
-
-<script src="./lib/jquery/dist/jquery.min.js">
-</script>
-<script>
-
-    $.ajax(settings).done(function (response) {
-        //console.log(response);
-        //let textArea = document.querySelectorAll('#weatherForecast');
-        //let textArea = document.getElementById('weatherForecast');
-      
-    });
-</script>
 </html>
