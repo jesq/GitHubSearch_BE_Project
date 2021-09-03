@@ -1,5 +1,6 @@
 ﻿using GitHubSearchWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -31,18 +32,20 @@ namespace GitHubSearchWebApp.Controllers
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
 
-            return ConvertResponseToGitRepositories();
+            return ConvertResponseToGitRepositories(response.Content);
         }
 
-        private IEnumerable<GitRepository> ConvertResponseToGitRepositories()
+        private IEnumerable<GitRepository> ConvertResponseToGitRepositories(string content)
         {
+            var json = JObject.Parse(content);
+
             return Enumerable.Range(1, 10).Select(index =>
            {
                return new GitRepository
                {
                    Id = index,
-                   Name = "books",
-                   HtmlUrl = "https://github.com/EbookFoundation/free-programming-books"
+                   Name = json["items"][index - 1].Value<string>("full_name"),
+                   HtmlUrl = json["items"][index - 1].Value<string>("html_url")
                };
            });
         }
