@@ -347,3 +347,100 @@ svg #shadow_1_ {
     transform: scaleY(1);
   }
 }
+
+/* CARDS CSS */
+
+.front h3 {
+  font-size: 25px !important;
+}
+
+.back {
+  background: #2952a3 !important;
+}
+
+.front {
+  background: #3366cc !important;
+}
+
+.front img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.our-services {
+  margin-top: 50px;
+}
+.flip-container {
+  -webkit-perspective: 1000;
+  margin: 0 auto 60px auto;
+  width: 320px;
+  height: 200px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.flip-container:hover .flipper {
+  -webkit-transform: rotateY(180deg);
+  cursor: pointer;
+}
+.flip-container.hover .flipper {
+  -webkit-transform: rotateY(180deg);
+  cursor: pointer;
+}
+
+.front {
+  width: 320px;
+  height: 200px;
+  border-radius: 15px;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.front h3 {
+  text-align: center;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+.front img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.back {
+  width: 320px;
+  height: 200px;
+  border-radius: 15px;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotateY(180deg);
+  text-align: center;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+.back h3 {
+  margin-top: 20px;
+}
+
+.back p {
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  margin-right: 15px;
+}
+
+.flipper {
+  -webkit-transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+  position: relative;
+}
