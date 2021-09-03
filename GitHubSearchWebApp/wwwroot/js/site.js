@@ -1,4 +1,16 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var submitt = document.getElementById("mySubmit");
+submitt.addEventListener('submit', function (e) {
+    e.preventDefault;
+    var search = document.getElementById("search_bar").val;
+    var originalRepo = search.split(' ').join(' ');
 
-// Write your JavaScript code.
+    fetch("https://localhost:5001/api/gitrepository/" + originalRepo)
+        .then((result) => result.json())
+        .then((data) => {
+            console.log(data)
+        })
+})
+
+
+
+
