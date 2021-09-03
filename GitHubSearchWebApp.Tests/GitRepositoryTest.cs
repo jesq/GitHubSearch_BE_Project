@@ -13,7 +13,7 @@ namespace GitHubSearchWebApp.Tests
         public void ConvertResponseToToGitRepositoriesNameTest()
         {
             //Asume
-            string content = LoadJsonFromResource1();
+            string content = LoadJsonFromResourceJson();
             var controller = new GitRepositoryController();
 
             // Act
@@ -28,7 +28,7 @@ namespace GitHubSearchWebApp.Tests
         public void ConvertResponseToToGitRepositoriesHtmlUrlTest()
         {
             //Asume
-            string content = LoadJsonFromResource1();
+            string content = LoadJsonFromResourceJson();
             var controller = new GitRepositoryController();
 
             // Act
@@ -38,11 +38,39 @@ namespace GitHubSearchWebApp.Tests
             var gitHtmlUrl = ((GitRepository[])output)[0];
             Assert.Equal("https://github.com/jnewland/gsa-prototype", gitHtmlUrl.HtmlUrl);
         }
-        private string LoadJsonFromResource1()
+        
+        [Fact]
+        public void ConvertResponseToToGitRepositoriesIdTest()
+        {
+            //Asume
+            string content = LoadJsonFromResourceJson();
+            var controller = new GitRepositoryController();
+
+            // Act
+            var output = controller.ConvertResponseToGitRepositories(content);
+
+            // Assert
+            var gitId = ((GitRepository[])output)[0];
+            int a = 1;
+            Assert.Equal(a, gitId.Id);
+        }
+
+        private string LoadJsonFromResourceJson()
         {
             var assembly = this.GetType().Assembly;
             var assemblyName = assembly.GetName().Name;
             var resourceName = $"{assemblyName}.DataFromGitRepoApi.json";
+            var resourceStream = assembly.GetManifestResourceStream(resourceName);
+            using (var tr = new StreamReader(resourceStream))
+            {
+                return tr.ReadToEnd();
+            }
+        }
+        private string LoadJsonFromResourceOwner()
+        {
+            var assembly = this.GetType().Assembly;
+            var assemblyName = assembly.GetName().Name;
+            var resourceName = $"{assemblyName}.DataFromGitRepoApiOwner.json";
             var resourceStream = assembly.GetManifestResourceStream(resourceName);
             using (var tr = new StreamReader(resourceStream))
             {
