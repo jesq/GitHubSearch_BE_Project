@@ -38,7 +38,19 @@ namespace GitHubSearchWebApp.Tests
             var gitHtmlUrl = ((GitRepository[])output)[0];
             Assert.Equal("https://github.com/jnewland/gsa-prototype", gitHtmlUrl.HtmlUrl);
         }
-        
+        [Fact]
+        public void ConvertResponseToToGitRepositoriesOwnerTest()
+        {
+            //Asume
+            string content = LoadJsonFromResourceJson();
+            var controller = new GitRepositoryController();
+            // Act
+            var output = controller.ConvertResponseToGitRepositories(content);
+            // Assert
+            var gitOwner = ((GitRepository[])output)[0];
+            Assert.Equal("jnewland", gitOwner.Owner.Username);
+            Assert.Equal("https://avatars.githubusercontent.com/u/47?v=4", gitOwner.Owner.AvatarUrl);
+        }
         [Fact]
         public void ConvertResponseToToGitRepositoriesIdTest()
         {
@@ -54,6 +66,8 @@ namespace GitHubSearchWebApp.Tests
             int a = 1;
             Assert.Equal(a, gitId.Id);
         }
+
+
 
         private string LoadJsonFromResourceJson()
         {
