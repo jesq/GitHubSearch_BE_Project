@@ -23,6 +23,21 @@ namespace GitHubSearchWebApp.Tests
             var gitName = ((GitRepository[])output)[0];
             Assert.Equal("jnewland/gsa-prototype", gitName.Name);
         }
+    
+        [Fact]
+        public void ConvertResponseToToGitRepositoriesHtmlUrlTest()
+        {
+            //Asume
+            string content = LoadJsonFromResource1();
+            var controller = new GitRepositoryController();
+
+            // Act
+            var output = controller.ConvertResponseToGitRepositories(content);
+
+            // Assert
+            var gitHtmlUrl = ((GitRepository[])output)[0];
+            Assert.Equal("https://github.com/jnewland/gsa-prototype", gitHtmlUrl.HtmlUrl);
+        }
         private string LoadJsonFromResource1()
         {
             var assembly = this.GetType().Assembly;
