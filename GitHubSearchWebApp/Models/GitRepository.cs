@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 
 namespace GitHubSearchWebApp.Models
 {
-    public class Repository
+    public class GitRepository
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
         public string HtmlUrl { get; set; }
+
+        public Owner Owner { get; set; }
 
     }
 }
