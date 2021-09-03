@@ -47,7 +47,7 @@ namespace GitHubSearchWebApp.Controllers
             return Enumerable.Range(1, 10).Select(index =>
             {
                 var repository = json["items"][index - 1];
-                var owner = json["items"][0]["owner"];
+                var owner = json["items"][index-1]["owner"];
                 return new GitRepository
                 {
                     Id = index,
