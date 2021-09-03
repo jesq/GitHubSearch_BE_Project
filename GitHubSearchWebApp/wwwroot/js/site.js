@@ -1,15 +1,16 @@
-﻿var settings = {
-    "url": "/weatherforecast",
-    "method": "GET",
-    "timeout": 0,
-};
+﻿var submitt = document.getElementById("mySubmit");
+submitt.addEventListener('submit', function (e) {
+    e.preventDefault;
+    var search = document.getElementById("search_bar").val;
+    var originalRepo = search.split(' ').join(' ');
 
-$.ajax(settings).done(function (response) {
-    //console.log(response);
-    //let textArea = document.querySelectorAll('#weatherForecast');
-    //let textArea = document.getElementById('weatherForecast');
-    $('#weatherForecast').val("The weather for tomorrow should look like this: " + response[0].summary);
-    console.log(response.longitude);
-    console.log(response.latitude);
-});
+    fetch("https://localhost:5001/api/gitrepository/" + originalRepo)
+        .then((result) => result.json())
+        .then((data) => {
+            console.log(data)
+        })
+})
+
+
+
 

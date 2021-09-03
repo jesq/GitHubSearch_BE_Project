@@ -51,8 +51,13 @@ namespace GitHubSearchWebApp
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
+            var defaultFilesOptions = new DefaultFilesOptions();
+            defaultFilesOptions.DefaultFileNames = new List<string>();
+            defaultFilesOptions.DefaultFileNames.Add("index.html");
+
+            app.UseDefaultFiles(defaultFilesOptions);
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthorization();
