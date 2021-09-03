@@ -28,7 +28,12 @@ namespace GitHubSearchWebApp.Controllers
         {
             var client = new RestClient("https://api.github.com/search/repositories");
             client.Timeout = -1;
-            var request = new RestRequest(Method.GET).AddQueryParameter("q", name).AddParameter("per_page", "10").AddParameter("page","1");
+            var request = new RestRequest(Method.GET)
+                                .AddQueryParameter("q", name)
+                                .AddParameter("per_page", "10")
+                                .AddParameter("page","1")
+                                .AddParameter("sort", "updated")
+                                .AddParameter("order", "asc");
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
 
