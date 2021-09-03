@@ -55,7 +55,8 @@ namespace GitHubSearchWebApp.Controllers
                     HtmlUrl = repository.Value<string>("html_url"),
                     Owner = new Owner(owner.Value<string>("login"), owner.Value<string>("avatar_url"))
                 };
-            });
+            })
+            .ToArray();
         }
     }
 }
