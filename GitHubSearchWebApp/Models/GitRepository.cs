@@ -13,5 +13,7 @@ namespace GitHubSearchWebApp.Models
 
         public string HtmlUrl { get; set; }
 
+        public Owner Owner { get; set; }
+
     }
 }

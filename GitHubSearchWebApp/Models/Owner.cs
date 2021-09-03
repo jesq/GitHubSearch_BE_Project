@@ -10,5 +10,11 @@ namespace GitHubSearchWebApp.Models
         public string Username { get; set; }
 
         public string AvatarUrl { get; set; }
+
+        public Owner(string username, string avatarUrl)
+        {
+            Username = username;
+            AvatarUrl = avatarUrl;
+        }
     }
 }
