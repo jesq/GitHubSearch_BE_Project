@@ -15,13 +15,6 @@ namespace GitHubSearchWebApp.Controllers
     [ApiController]
     public class GitRepositoryController : ControllerBase
     {
-        // GET: api/<GitRepositoryController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET api/<GitRepositoryController>/5
         [HttpGet("{name}")]
         public IEnumerable<GitRepository> Get(string name)
