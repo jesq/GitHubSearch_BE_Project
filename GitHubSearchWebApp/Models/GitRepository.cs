@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GitHubSearchWebApp.Models
 {
-    public class Repository
+    public class GitRepository
     {
         public int Id { get; set; }
 
