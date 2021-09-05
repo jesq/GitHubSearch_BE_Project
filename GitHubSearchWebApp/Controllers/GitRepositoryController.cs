@@ -33,8 +33,8 @@ namespace GitHubSearchWebApp.Controllers
 
             return ConvertResponseToGitRepositories(response.Content);
         }
-
-        public IEnumerable<GitRepository> ConvertResponseToGitRepositories(string content)
+        
+       public IEnumerable<GitRepository> ConvertResponseToGitRepositories(string content)
         {
             var json = JObject.Parse(content);
 
