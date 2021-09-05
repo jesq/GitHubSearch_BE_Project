@@ -3,7 +3,10 @@
 class UI {
     static async displayResults(data) {
         await Store.getResults(data);
-        console.log(results);
+        if (results.length === 0) {
+            console.log("none")
+            UI.addNoResults();
+        }
         results.forEach((result) => {
             console.log(result);
             UI.addSearchResultToList(result)
@@ -31,6 +34,10 @@ class UI {
         list.appendChild(button);
     }
 
+    static addNoResults() {
+        document.querySelector('#search-results-list').innerHTML = "No results found."
+    }
+
     static resetResults() {
         results.length = 0;
         document.querySelector('#search-results-list').innerHTML = '';
@@ -39,6 +46,9 @@ class UI {
 
 class Store {
     static getResults(data) {
+        if (data === []) {
+            return [];
+        }
         data.forEach((result) => results.push(result));
         return results;
     }
