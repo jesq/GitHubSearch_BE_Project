@@ -48,9 +48,9 @@ class UI {
 
 document.querySelector('#submitBtn').addEventListener('click', (e) => {
     e.preventDefault;
-    var search = document.getElementById("search_bar").val;
+    var search = document.getElementById("search_bar").value;
     //var originalRepo = search.split(' ').join(' ');
-
+    console.log(search)
     fetch("https://localhost:5001/api/gitrepository/" + search)
         .then((result) => result.json())
         .then((data) => {
