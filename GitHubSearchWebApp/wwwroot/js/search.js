@@ -48,6 +48,7 @@ class Store {
 document.querySelector('#submitBtn').addEventListener('click', (e) => {
     e.preventDefault;
     UI.resetResults();
+    document.getElementById("spinner").setAttribute("style", "");
     var search = document.getElementById("search_bar").value;
     //var originalRepo = search.split(' ').join(' ');
     console.log(search)
@@ -56,5 +57,6 @@ document.querySelector('#submitBtn').addEventListener('click', (e) => {
         .then((data) => {
             console.log(data);
             UI.displayResults(data);
+            document.getElementById("spinner").setAttribute("style", "display:none");
         })
 })
