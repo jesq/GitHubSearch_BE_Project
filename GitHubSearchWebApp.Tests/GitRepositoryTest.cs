@@ -1,7 +1,5 @@
 using GitHubSearchWebApp.Controllers;
 using GitHubSearchWebApp.Models;
-using System;
-using System.Collections;
 using System.IO;
 using Xunit;
 
@@ -63,8 +61,7 @@ namespace GitHubSearchWebApp.Tests
 
             // Assert
             var gitId = ((GitRepository[])output)[0];
-            int a = 1;
-            Assert.Equal(a, gitId.Id);
+            Assert.Equal(1, gitId.Id);
         }
 
 
@@ -74,17 +71,6 @@ namespace GitHubSearchWebApp.Tests
             var assembly = this.GetType().Assembly;
             var assemblyName = assembly.GetName().Name;
             var resourceName = $"{assemblyName}.DataFromGitRepoApi.json";
-            var resourceStream = assembly.GetManifestResourceStream(resourceName);
-            using (var tr = new StreamReader(resourceStream))
-            {
-                return tr.ReadToEnd();
-            }
-        }
-        private string LoadJsonFromResourceOwner()
-        {
-            var assembly = this.GetType().Assembly;
-            var assemblyName = assembly.GetName().Name;
-            var resourceName = $"{assemblyName}.DataFromGitRepoApiOwner.json";
             var resourceStream = assembly.GetManifestResourceStream(resourceName);
             using (var tr = new StreamReader(resourceStream))
             {

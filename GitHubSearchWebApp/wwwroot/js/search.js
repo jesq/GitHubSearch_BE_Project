@@ -50,7 +50,6 @@ document.querySelector('#submitBtn').addEventListener('click', (e) => {
     UI.resetResults();
     document.getElementById("spinner").setAttribute("style", "");
     var search = document.getElementById("search_bar").value;
-    //var originalRepo = search.split(' ').join(' ');
     console.log(search)
     fetch("https://localhost:5001/api/gitrepository/" + search)
         .then((result) => result.json())
