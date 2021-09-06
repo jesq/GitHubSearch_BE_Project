@@ -15,7 +15,7 @@ namespace GitHubSearchWebApp.Tests
             var controller = new GitRepositoryController();
 
             // Act
-            var output = controller.ConvertResponseToGitRepositories(content);
+            var output = controller.ConvertServerContentToGitRepositories(content);
 
             // Assert
             var gitName = ((GitRepository[])output)[0];
@@ -30,7 +30,7 @@ namespace GitHubSearchWebApp.Tests
             var controller = new GitRepositoryController();
 
             // Act
-            var output = controller.ConvertResponseToGitRepositories(content);
+            var output = controller.ConvertServerContentToGitRepositories(content);
 
             // Assert
             var gitHtmlUrl = ((GitRepository[])output)[0];
@@ -43,7 +43,7 @@ namespace GitHubSearchWebApp.Tests
             string content = LoadJsonFromResourceJson();
             var controller = new GitRepositoryController();
             // Act
-            var output = controller.ConvertResponseToGitRepositories(content);
+            var output = controller.ConvertServerContentToGitRepositories(content);
             // Assert
             var gitOwner = ((GitRepository[])output)[0];
             Assert.Equal("jnewland", gitOwner.Owner.Username);
@@ -57,7 +57,7 @@ namespace GitHubSearchWebApp.Tests
             var controller = new GitRepositoryController();
 
             // Act
-            var output = controller.ConvertResponseToGitRepositories(content);
+            var output = controller.ConvertServerContentToGitRepositories(content);
 
             // Assert
             var gitId = ((GitRepository[])output)[0];

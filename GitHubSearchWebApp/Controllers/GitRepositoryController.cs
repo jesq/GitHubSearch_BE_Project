@@ -16,12 +16,18 @@ namespace GitHubSearchWebApp.Controllers
         [HttpGet("{name}")]
         public IEnumerable<GitRepository> Get(string name)
         {
+
+            string contentFromServer = GetContentFromServer(name);
+            return ConvertServerContentToGitRepositories(contentFromServer);
+        }
+
+        private static string GetContentFromServer( string name )
+        {
             var client = new RestClient("https://api.github.com/search/repositories");
             client.Timeout = -1;
             IRestRequest request = FormRequest(name);
             IRestResponse response = client.Execute(request);
-
-            return ConvertResponseToGitRepositories(response.Content);
+            return response.Content;
         }
 
         private static IRestRequest FormRequest(string name)
@@ -35,20 +41,20 @@ namespace GitHubSearchWebApp.Controllers
         }
         
        [NonAction]
-       public IEnumerable<GitRepository> ConvertResponseToGitRepositories(string content)
+       public IEnumerable<GitRepository> ConvertServerContentToGitRepositories(string contentfromServer)
         {
-            var json = JObject.Parse(content);
+            var searchResultJson = JObject.Parse(contentfromServer);
 
-            long resultSize = json.Value<long>("total_count");
-            if ( resultSize == 0 )
+            long resultTotalCount = searchResultJson.Value<long>("total_count");
+            if ( resultTotalCount == 0 )
             {
                 return new List<GitRepository>();
             }
 
             return Enumerable.Range(1, 10).Select(index =>
             {
-                var repository = json["items"][index - 1];
-                var owner = json["items"][index-1]["owner"];
+                var repository = searchResultJson["items"][index - 1];
+                var owner = searchResultJson["items"][index-1]["owner"];
                 return new GitRepository
                 {
                     Id = index,
