@@ -33,8 +33,9 @@ namespace GitHubSearchWebApp.Controllers
                                             .AddParameter("sort", "updated")
                                             .AddParameter("order", "asc");
         }
-
-        public IEnumerable<GitRepository> ConvertResponseToGitRepositories(string content)
+        
+       [NonAction]
+       public IEnumerable<GitRepository> ConvertResponseToGitRepositories(string content)
         {
             var json = JObject.Parse(content);
 
