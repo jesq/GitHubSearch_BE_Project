@@ -22,13 +22,13 @@ class UI {
         button.innerHTML = `
             <ul class="list-group list-group-horizontal align-items-center justify-content-center">
                 <li class="list-group-item border-0 m-auto">
-                    <img src="${result.owner.avatarUrl}" width="50" height="50" class="rounded-circle" alt="Cinque Terre">
+                    <img src="${result.avatarUrl}" width="50" height="50" class="rounded-circle" alt="Cinque Terre">
                 </li>
                 <li class="list-group-item border-0 m-auto">
                     ${result.name}
                 </li>
                 <li class="list-group-item border-0 m-auto">
-                    ${result.owner.username}
+                    ${result.username}
                 </li>
             </ul>`
         list.appendChild(button);
@@ -57,15 +57,18 @@ class Store {
 
 document.querySelector('#submitBtn').addEventListener('click', (e) => {
     e.preventDefault;
-    UI.resetResults();
-    document.getElementById("spinner").setAttribute("style", "");
     var search = document.getElementById("search_bar").value;
     console.log(search)
-    fetch("https://localhost:5001/api/gitrepository/" + search)
-        .then((result) => result.json())
-        .then((data) => {
-            console.log(data);
-            UI.displayResults(data);
-            document.getElementById("spinner").setAttribute("style", "display:none");
-        })
+    if (search) {
+        UI.resetResults();
+        document.getElementById("spinner").setAttribute("style", "");
+        fetch("https://localhost:5001/api/gitrepository/" + search)
+            .then((result) => result.json())
+            .then((data) => {
+                console.log(data);
+                UI.displayResults(data);
+                document.getElementById("spinner").setAttribute("style", "display:none");
+            })
+    }
+    
 })
