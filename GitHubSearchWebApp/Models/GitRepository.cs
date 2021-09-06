@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 
 namespace GitHubSearchWebApp.Models
 {
@@ -13,7 +10,9 @@ namespace GitHubSearchWebApp.Models
 
         public string HtmlUrl { get; set; }
 
-        public Owner Owner { get; set; }
+        public string Username { get; set; }
+
+        public string AvatarUrl { get; set; }
 
     }
 }

@@ -18,19 +18,23 @@ namespace GitHubSearchWebApp.Controllers
         {
             var client = new RestClient("https://api.github.com/search/repositories");
             client.Timeout = -1;
-            var request = new RestRequest(Method.GET)
-                                .AddQueryParameter("q", name)
-                                .AddParameter("per_page", "10")
-                                .AddParameter("page","1")
-                                .AddParameter("sort", "updated")
-                                .AddParameter("order", "asc");
+            IRestRequest request = FormRequest(name);
             IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
 
             return ConvertResponseToGitRepositories(response.Content);
         }
-        
-       public IEnumerable<GitRepository> ConvertResponseToGitRepositories(string content)
+
+        private static IRestRequest FormRequest(string name)
+        {
+            return new RestRequest(Method.GET)
+                                            .AddQueryParameter("q", name)
+                                            .AddParameter("per_page", "10")
+                                            .AddParameter("page", "1")
+                                            .AddParameter("sort", "updated")
+                                            .AddParameter("order", "asc");
+        }
+
+        public IEnumerable<GitRepository> ConvertResponseToGitRepositories(string content)
         {
             var json = JObject.Parse(content);
 
@@ -49,7 +53,8 @@ namespace GitHubSearchWebApp.Controllers
                     Id = index,
                     Name = repository.Value<string>("full_name"),
                     HtmlUrl = repository.Value<string>("html_url"),
-                    Owner = new Owner(owner.Value<string>("login"), owner.Value<string>("avatar_url"))
+                    Username = owner.Value<string>("login"),
+                    AvatarUrl = owner.Value<string>("avatar_url")
                 };
             })
             .ToArray();
